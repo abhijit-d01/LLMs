@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 #### Step 4: Configure API Credentials
 
-Create a new file named `.env` in the root directory of the project. Add your Pinecone and OpenAI API keys to this file as shown below.
+Edit file named `.env` in the root directory of the project. Add your Pinecone and OpenAI API keys to this file as shown below.
 
 ```ini
 PINECONE_API_KEY = "your_pinecone_api_key"
