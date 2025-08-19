@@ -68,4 +68,4 @@ Finally, start the application by running the main Python script.
 python app.py
 ```
 
-The chatbot will be accessible at `http://localhost:5000` (or the port specified in your Flask app) in your web browser.
+The chatbot will be accessible at `http://localhost:8080` (or the port specified in your Flask app) in your web browser.
