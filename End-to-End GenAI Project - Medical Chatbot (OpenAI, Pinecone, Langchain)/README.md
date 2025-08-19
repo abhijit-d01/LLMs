@@ -1,4 +1,4 @@
-# End-to-End Medical Chatbot 🩺
+# Medical Chatbot
 
 This project features an end-to-end medical chatbot built with a focus on generative AI. It uses a combination of powerful libraries to provide a responsive and informative conversational experience.
 
