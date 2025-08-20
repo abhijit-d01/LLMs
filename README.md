@@ -49,8 +49,8 @@ Here are some of the projects currently in this repository:
 ### **1. Clone the Repository**
 
 ```bash
-git clone https://github.com/your-username/awesome-llm-projects.git
-cd awesome-llm-projects
+git clone https://github.com/abhijit-d01/LLMs.git
+cd LLMs
 ```
 
 ### **2. Install Dependencies**
