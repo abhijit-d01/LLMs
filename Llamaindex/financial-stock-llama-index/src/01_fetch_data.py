@@ -1,7 +1,7 @@
 import os
 import urllib.request as request
 
-data_url = "https://github.com/entbappy/Branching-tutorial/raw/master/articles.zip"
+data_url = "https://github.com/abhijit-d01/LLMs/blob/fed1ff649b0841c02ae08b3f55efd2da9709dfcd/Llamaindex/financial-stock-llama-index/articles.zip"
 
 def download_file():
 
