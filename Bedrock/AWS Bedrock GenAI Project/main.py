@@ -38,6 +38,7 @@ bedrock = boto3.client(service_name="bedrock-runtime", region_name = "us-east-1"
 # `amazon.titan-embed-text-v1` is a specific model used to convert text into numerical vectors (embeddings).
 bedrock_embeddings = BedrockEmbeddings(model_id="amazon.titan-embed-text-v1",client=bedrock)
 
+#Choose any model you Like.
 
 # Defines a function to load, split, and chunk documents from the `pdf-data` folder.
 def get_documents():
