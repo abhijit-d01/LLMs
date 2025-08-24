@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI E-Commerce Product Recommender</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        textarea, button { padding: 10px; margin: 5px; width: 80%; }
+        #response { width: 80%; margin: auto; border: 1px solid #ccc; padding: 10px; background: #f4f4f4; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <h1>AI E-Commerce Product Recommender</h1>
+    <textarea id="preferences" placeholder="Enter your shopping preferences (e.g., looking for a gaming laptop, fitness gear)..."></textarea><br>
+    <button onclick="getRecommendations()">Get Recommendations</button>
+    
+    <h2>Recommended Products:</h2>
+    <div id="response">Your AI-generated product recommendations will appear here...</div>
+
+    <script>
+        async function getRecommendations() {
+            let preferencesInput = document.getElementById("preferences").value;
+            let responseDiv = document.getElementById("response");
+
+            let formData = new FormData();
+            formData.append("preferences", preferencesInput);
+
+            let response = await fetch("/recommend", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                responseDiv.innerHTML = "<p style='color: red;'>Error: Unable to process the request.</p>";
+                return;
+            }
+
+            let data = await response.json();
+            responseDiv.innerHTML = `<p>${data.recommendations}</p>`;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

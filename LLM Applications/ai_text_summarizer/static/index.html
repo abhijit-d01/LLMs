@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Text Summarizer</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        textarea { width: 80%; height: 150px; margin-bottom: 10px; }
+        button { padding: 10px; cursor: pointer; }
+        #summary { width: 80%; margin: auto; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>AI-Powered Text Summarizer</h1>
+    <textarea id="text-input" placeholder="Enter text to summarize..."></textarea><br>
+    <button onclick="summarizeText()">Summarize</button>
+    
+    <h2>Summary:</h2>
+    <div id="summary">Your summary will appear here...</div>
+
+    <script>
+        async function summarizeText() {
+            let inputText = document.getElementById("text-input").value;
+            let summaryDiv = document.getElementById("summary");
+
+            let formData = new FormData();
+            formData.append("text", inputText);
+
+            let response = await fetch("/summarize", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                summaryDiv.innerHTML = "<p style='color: red;'>Error: Failed to fetch summary.</p>";
+                return;
+            }
+
+            let data = await response.json();
+            summaryDiv.innerHTML = `<p>${data.summary}</p>`;
+        }
+    </script>
+
+</body>
+</html>
+
+
+

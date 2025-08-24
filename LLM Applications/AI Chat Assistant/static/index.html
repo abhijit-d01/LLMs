@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        #chat-box { width: 80%; height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin: auto; }
+        input { width: 70%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>AI Chat Assistant</h1>
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        async function sendMessage() {
+            let inputField = document.getElementById("user-input");
+            let chatBox = document.getElementById("chat-box");
+
+            let userMessage = inputField.value;
+            chatBox.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+            inputField.value = "";
+
+            let response = await fetch(`/chat?prompt=${encodeURIComponent(userMessage)}`, {
+                method: "POST"
+            });
+
+            if (!response.ok) {
+                chatBox.innerHTML += `<p><strong>AI:</strong> Error: Failed to fetch response.</p>`;
+                return;
+            }
+
+            let data = await response.json();
+            chatBox.innerHTML += `<p><strong>AI:</strong> ${data.response}</p>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+</body>
+
+
+
+
+

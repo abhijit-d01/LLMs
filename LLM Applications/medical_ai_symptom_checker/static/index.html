@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical AI Symptom Checker</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        textarea, button { padding: 10px; margin: 5px; width: 80%; }
+        #response { width: 80%; margin: auto; border: 1px solid #ccc; padding: 10px; background: #f4f4f4; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <h1>Medical AI Symptom Checker</h1>
+    <textarea id="symptoms" placeholder="Enter your symptoms (e.g., fever, headache, fatigue)..."></textarea><br>
+    <button onclick="analyzeSymptoms()">Analyze Symptoms</button>
+    
+    <h2>AI Health Insights:</h2>
+    <div id="response">Your AI-generated health insights will appear here...</div>
+
+    <script>
+        async function analyzeSymptoms() {
+            let symptomsInput = document.getElementById("symptoms").value;
+            let responseDiv = document.getElementById("response");
+
+            let formData = new FormData();
+            formData.append("symptoms", symptomsInput);
+
+            let response = await fetch("/analyze_symptoms", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                responseDiv.innerHTML = "<p style='color: red;'>Error: Unable to process the request.</p>";
+                return;
+            }
+
+            let data = await response.json();
+            responseDiv.innerHTML = `<p>${data.response}</p>`;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+

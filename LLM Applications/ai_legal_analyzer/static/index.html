@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Legal Document Analyzer</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        textarea { width: 80%; height: 200px; margin-bottom: 10px; }
+        button { padding: 10px; margin: 5px; width: 40%; }
+        #output { width: 80%; margin: auto; border: 1px solid #ccc; padding: 10px; background: #f4f4f4; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <h1>AI Legal Document Analyzer</h1>
+    <textarea id="legal-text" placeholder="Paste legal text or contract here..."></textarea><br>
+    <button onclick="analyzeLegalText()">Analyze</button>
+    
+    <h2>Key Insights:</h2>
+    <div id="output">Your legal insights will appear here...</div>
+
+    <script>
+        async function analyzeLegalText() {
+            let inputText = document.getElementById("legal-text").value;
+            let outputArea = document.getElementById("output");
+
+            let formData = new FormData();
+            formData.append("text", inputText);
+
+            let response = await fetch("/analyze_legal_text", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                outputArea.innerHTML = "<p style='color: red;'>Error: Failed to process text.</p>";
+                return;
+            }
+
+            let data = await response.json();
+            outputArea.innerHTML = `<p>${data.insights}</p>`;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
